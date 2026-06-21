@@ -9,8 +9,8 @@ interface CardProps {
 function Card({ id, image, isFlipped, isMatched, onCardClick }: CardProps) {
 
     return (
-        <div>
-            Card goes here
+        <div onClick={() => onCardClick(id)}>
+            {isFlipped || isMatched ? <img src={image} /> : <div>placeholder</div>}
         </div>
     );
 }
