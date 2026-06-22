@@ -24,7 +24,23 @@ function MemoryGame( { images }: { images: string[] }) {
     const [firstCard, setFirstCard] = useState<CardType | null>(null);
 
     function handleCardClick(id: number) {
-
+        if (firstCard === null) {
+            // first click - flip the card
+            const updatedCards = cards.map((card) => {
+                if (card.id === id) {
+                    return { ...card, isFlipped: true };
+                }
+                return card;
+            });
+            setCards(updatedCards);
+            // store the clicked card
+            const clickedCard = cards.find((card) => card.id === id);
+            if (clickedCard) {
+                setFirstCard(clickedCard);
+            }
+        } else {
+            // second click
+        }
     }
 
     return(
