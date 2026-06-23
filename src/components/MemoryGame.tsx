@@ -40,6 +40,25 @@ function MemoryGame( { images }: { images: string[] }) {
             }
         } else {
             // second click
+            const secondCard = cards.find((card) => card.id === id);
+            if (secondCard) {
+                
+                if (secondCard.image === firstCard.image) {
+                        const updatedCards = cards.map((card) => {
+                            if (card.id === id) {
+                                // second clicked card - flip and match it
+                                return { ...card, isFlipped: true, isMatched: true };
+                            }
+                            if (card.id === firstCard.id) {
+                                // first clicked card, already flipped, need to match it
+                                return { ...card, isMatched: true };
+                            }
+                            // other cards stay the same
+                            return card;
+                        });
+                        setCards(updatedCards);
+                }
+            }
         }
     }
 
